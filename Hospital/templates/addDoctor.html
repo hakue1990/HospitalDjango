@@ -1,0 +1,18 @@
+{% extends 'base.html'%} {%load crispy_forms_tags %} {%load static%} {% block content %}
+<main>
+  <section class="hero">
+    <form method="POST" action="">
+        {%csrf_token%}
+      {{form|crispy}}
+      <button type="submit">Dodaj lekarza</button>
+
+    </form>
+  </section>
+  <footer>
+    <div class="footer-chat-ico">
+      <img src="{%static '/img/contact.png'%}" alt="contact" />
+    </div>
+    <span class="sign">made with ❤️ by Adam && Bartek</span>
+  </footer>
+</main>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html'%} {%load static%} {% block content %}
+<main>
+  <section class="hero">
+    <div class="hero--opinions">
+      <div class="title-opinions">
+        <h1>Twoje wizyty!</h1>
+        <img src="{%static 'img/Vector1.png'%}" alt="vector" />
+      </div>
+      <div class="opinion--item">
+        <h2>Bartosz Korytowski</h2>
+        <p>godzina: 10:30</p>
+        <h3>Dr. Szczupak</h3>
+      </div>
+      <div class="opinion--item">
+        <h2>Adam Hałdaś</h2>
+        <p>godzina: 10:30</p>
+        <h3>Dr. Kowalski</h3>
+      </div>
+      <div class="opinion--item">
+        <h2>Jan Kowalski</h2>
+        <p>godzina: 10:30</p>
+        <h3>Dr. Szczupak</h3>
+      </div>
+      <div class="opinion--item">
+        <h2>Adam Hałdaś</h2>
+        <p>godzina: 10:30</p>
+        `
+        <h3>Dr. Pernik</h3>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-chat-ico">
+    <img src="{%static '/img/contact.png'%}" alt="contact" />
+  </div>
+  <span class="sign">made with ❤️ by Adam && Bartek</span>
+</footer>
+{% endblock %}

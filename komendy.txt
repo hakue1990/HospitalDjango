@@ -1,0 +1,12 @@
+
+pip install virtualenv instaluje virtualenv
+virtualenv myenv - tworzy myenv jeśli nie ma w folderze projektu
+
+
+
+source myenv/scripts/activate - aktywuje virtualne środowisko w katalogu ecommerce (nadrzędnym)
+source myenv/bin/activate - aktywuje virtualne środowisko w katalogu ecommerce (nadrzędnym) Linux
+pip list - robi ich sie mniej
+django-admin startproject backend - tworzy folder backend i projekt django
+python manage.py runserver - odpala server w środowisku django - muszę być w folderze backend!
+pip install -r /path/to/requirements.txt - isntaluje requirements trzeba byc w myenv

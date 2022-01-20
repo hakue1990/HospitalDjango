@@ -1,0 +1,39 @@
+{% extends 'base.html'%} {%load static%} {% block content %}
+<main>
+  <section class="contact--container">
+    <form>
+      <h2>napisz!</h2>
+      <div class="form--box">
+        <input type="text" class="='form-input" name="name" required="off" />
+        <label for="name" class="form-label"
+          ><span class="form-content">imie</span></label
+        >
+      </div>
+      <div class="form--box">
+        <input type="text" class="='form-input" name="name" required="off" />
+        <label for="name" class="form-label"
+          ><span class="form-content">email</span></label
+        >
+      </div>
+      <div class="form--box">
+        <input type="text" class="='form-input" name="name" required="off" />
+        <label for="name" class="form-label"
+          ><span class="form-content">temat</span></label
+        >
+      </div>
+      <div class="form--box__text">
+        <input type="text" class="='form-input" name="name" required="off" />
+        <label for="name" class="form-label"
+          ><span class="form-content">wiadomość</span></label
+        >
+      </div>
+    </form>
+  </section>
+  <footer>
+    <div class="footer-chat-ico">
+      <img src="{%static '/img/contact.png'%}" alt="contact" />
+    </div>
+    <span class="sign">made with ❤️ by Adam && Bartek</span>
+  </footer>
+</main>
+{% endblock %}
