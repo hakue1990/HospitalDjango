@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {%load static%} {% block content %}
+{% extends 'base_unauthenticated.html'%} {%load crispy_forms_tags %} {%load static%} {% block content %}
 
 <main>
   <section class="hero">
@@ -7,46 +7,25 @@
         <h1>Zostaw w Opinie!</h1>
         <img src="{%static 'img/Vector1.png'%}" alt="vector" />
       </div>
+      {%if user.is_authenticated%}
+      <form method="POST" action="">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Dodaj opinie</button>
+      </form>
+      {%else%}
+      <h2>Zaloguj się aby dodać opinię</h2>
+      {%endif%}
+      {%for opinion in opinions%}
+
       <div class="opinion--item">
-        <h2>Adam Hałdaś</h2>
+        <h2>{{opinion.opinion_for}}</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam quam
-          nesciunt alias earum facilis blanditiis hic voluptate odit dolor
-          accusantium? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Magnam quam nesciunt alias earum facilis blanditiis hic voluptate odit
-          dolor accusantium?
+          {{opinion.content}}
         </p>
+        <span style="text-align: right;">{{opinion.created_by.get_username}}</span>
       </div>
-      <div class="opinion--item">
-        <h2>Bartosz Korytowski</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam quam
-          nesciunt alias earum facilis blanditiis hic voluptate odit dolor
-          accusantium? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Magnam quam nesciunt alias earum facilis blanditiis hic voluptate odit
-          dolor accusantium?
-        </p>
-      </div>
-      <div class="opinion--item">
-        <h2>Jan Kowalski</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam quam
-          nesciunt alias earum facilis blanditiis hic voluptate odit dolor
-          accusantium? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Magnam quam nesciunt alias earum facilis blanditiis hic voluptate odit
-          dolor accusantium?
-        </p>
-      </div>
-      <div class="opinion--item">
-        <h2>Lubie Placki</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam quam
-          nesciunt alias earum facilis blanditiis hic voluptate odit dolor
-          accusantium? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Magnam quam nesciunt alias earum facilis blanditiis hic voluptate odit
-          dolor accusantium?
-        </p>
-      </div>
+      {%endfor%}
     </div>
   </section>
 </main>

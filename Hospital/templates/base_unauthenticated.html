@@ -25,35 +25,20 @@
         <div class="navbar--logo">
           <a href="/home"><img src="{%static 'img/logo.png'%}" /></a>
         </div>
-        {% if user.is_authenticated %}
-        <div><span>Witaj {{user.get_username}}</span></div>
-        {%endif%}
         <ul class="navbar--links">
           <li><a href="/opinions">Opinie</a></li>
           <li><a href="/visits">Wizyty</a></li>
           <li><a href="/contact">Kontakt</a></li>
-          {%if user.is_superuser %}
-          <li><a href="/addDoctor">Dodaj lekarza</a></li>
-          {%endif%}
-
         </ul>
         <div class="navbar--login">
-          {% if user.is_superuser %}
-          <a href="/admin">AdminPanel</a>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <a href="/logout">Wyloguj się</a>
-          {% else %}
+          {%if user.is_authenticated%}
+          {%else%}
           <a href="/login">Zaloguj się</a>
           <a href="/register">Zarejestruj się</a>
-          {% endif %}
+          {%endif%}
         </div>
       </nav>
-    </header>
-    {% if user.is_authenticated %} {% block content%} {% endblock content%}
-    {%else%}
-    <a href="/home">Zaloguj</a>
-    {%endif%}
+    </header> {% block content%} {% endblock content%}
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

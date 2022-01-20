@@ -382,3 +382,7 @@ section.callADoctor {
 .opinion--item h2 {
   margin: 10px;
 }
+
+.form-control {
+  width:50%
+}
