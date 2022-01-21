@@ -29,6 +29,9 @@
           <li><a href="/opinions">Opinie</a></li>
           <li><a href="/visits">Wizyty</a></li>
           <li><a href="/contact">Kontakt</a></li>
+          {%if user.is_superuser%}
+          <li><a href="/addDoctor">Dodaj lekarza</a></li>
+          {%endif%}
         </ul>
         <div class="navbar--login">
           {%if user.is_authenticated%}

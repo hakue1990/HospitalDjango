@@ -3,8 +3,8 @@ from multiprocessing import context
 from random import sample
 from django.shortcuts import render, redirect
 
-from .models import Doctor, Opinion
-from .forms import DoctorForm, OpinionForm
+from .models import Appointment, Doctor, Opinion
+from .forms import AppointmentForm, DoctorForm, OpinionForm
 
 
 
@@ -32,7 +32,8 @@ def contact(request):
 
 def appointment(request):
     if request.user.is_authenticated:
-        return render(request, 'myappointment.html', {})
+        appointments = Appointment.objects.all()
+        return render(request, 'myappointment.html', {'appointments':appointments})
     else:
         return redirect('/home')
 
@@ -61,3 +62,16 @@ def addOpinionForm(request):
             form.save()
     context = {'form':form, 'opinions': opinions}
     return render(request, 'opinions.html', context)
+
+def addAppointment(request):
+    form = AppointmentForm()
+    if request.method == 'POST':
+        print(request.POST)
+        form = AppointmentForm(request.POST, request.FILES)
+        if form.is_valid() and request.user.is_authenticated:
+            obje = form.save(commit=False)
+            obje.created_by = request.user
+            obje.status = 'OczekujeNaAkceptacje'
+            form.save()
+    context = {'form':form}
+    return render(request, 'addAppointment.html', context)

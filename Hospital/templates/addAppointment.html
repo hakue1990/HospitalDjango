@@ -1,0 +1,26 @@
+{% extends 'base.html'%} {%load crispy_forms_tags %} {%load static%} {% block content %}
+
+<main>
+  <section class="hero">
+    <div class="hero--opinions">
+      <div class="title-opinions">
+        <h1>Umów swoją wizytę u lekarza</h1>
+        <img src="{%static 'img/Vector1.png'%}" alt="vector" />
+      </div>
+      {%if user.is_authenticated%}
+      <form method="POST" action="">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Umów się</button>
+      </form>
+      {%endif%}
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-chat-ico">
+    <img src="{%static '/img/contact.png'%}" alt="contact" />
+  </div>
+  <span class="sign">made with ❤️ by Adam && Bartek</span>
+</footer>
+{% endblock %}

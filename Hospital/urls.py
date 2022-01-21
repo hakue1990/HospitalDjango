@@ -9,6 +9,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('myappointment/', views.appointment),
     path('addDoctor/', views.addDoctorForm),
+    path('addAppointment/', views.addAppointment),
     path('', views.home)
     
 ]
