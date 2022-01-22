@@ -28,7 +28,12 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 /* nawigacja */
-
+nav.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8a0bde;
+}
 .navbar--logo {
   color: wheat;
   font-size: 30px;
@@ -38,21 +43,14 @@ body {
 .navbar--logo img {
   width: 190px;
 }
-nav {
-  height: 8vh;
-  background-color: #8a0bde;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-}
-
 ul.navbar--links {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   list-style: none;
   width: 40%;
-  /* background-color: pink; */
+  height: 20px;
+  margin-top:20px;
 }
 ul li a {
   text-decoration: none;
@@ -81,8 +79,8 @@ ul li a:hover:after {
 .navbar--login {
   background-color: #fff;
   margin-right: 3rem;
-  height: 45px;
-  width: 220px;
+  height: 100%;
+  width: 420px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -243,6 +241,7 @@ footer .footer-chat-ico:hover {
   display: block;
   position: absolute;
   right: 2rem;
+  color: white;
 }
 section.callADoctor {
   margin-bottom: 5rem;
@@ -391,6 +390,7 @@ section.callADoctor {
 }
 .hero-addDoctor  form {
   /* background-color: red; */
+  border-top: 1px solid black;
   width: 500px;
   height: 600px;
   padding: 20px;
