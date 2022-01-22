@@ -29,11 +29,13 @@
             <img src="{%static '/img/doc 1.jpg'%}" alt="doctor 1" />
           </div>
           <div class="hero--select-text">
-            <h3>{{doctor.first}} {{doctor.lastname}} - {{doctor.typeofdoctor}}</h3>
-            <p>
-              
-            </p>
-            <a href="/addAppointment"><button class="hero--select--button">skonsultuj się!</button></a> 
+            <h3>
+              {{doctor.first}} {{doctor.lastname}} - {{doctor.typeofdoctor}}
+            </h3>
+            <p></p>
+            <a href="/addAppointment"
+              ><button class="hero--select--button">skonsultuj się!</button></a
+            >
           </div>
         </div>
         {%endfor%}
@@ -59,4 +61,10 @@
     </div>
   </section>
 </main>
+<footer>
+  <div class="footer-chat-ico">
+    <img src="{%static '/img/contact.png'%}" alt="contact" />
+  </div>
+  <span class="sign">made with ❤️ by Adam && Bartek</span>
+</footer>
 {% endblock %}

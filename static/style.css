@@ -381,3 +381,18 @@ section.callADoctor {
 .opinion--item h2 {
   margin: 10px;
 }
+
+.hero-addDoctor {
+
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-addDoctor  form {
+  /* background-color: red; */
+  width: 500px;
+  height: 600px;
+  padding: 20px;
+  box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+}
