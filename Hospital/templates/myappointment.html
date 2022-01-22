@@ -12,8 +12,13 @@
         <div class="opinion--item">
           <h2>{{user.get_username}}</h2>
           <p>{{appointment.date_of_visit}}</p>
-          <h3>{{appointment.doctor.firstname}} {{appointment.doctor.lastname}}  (  {{appointment.doctor.typeofdoctor}})</h3>
-          <p></p>
+          <h3>{{appointment.doctor.firstname}} {{appointment.doctor.lastname}}  ({{appointment.doctor.typeofdoctor}})</h3>
+          <p>{{appointment.status_of_visit}}</p>
+          {%if appointment.status_of_visit != "Anulowana" %}
+          <a href="/myappointment/cancel/{{appointment.id}}">
+            <button class="btn btn-danger">Anuluj wizytę</button>
+          </a>
+          {%endif%}
         </div>
         {%endfor%}
       </div>

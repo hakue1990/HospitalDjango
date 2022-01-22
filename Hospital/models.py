@@ -9,6 +9,12 @@ from django.forms import DateInput
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
+STATUS_OF_VISIT = [
+        ('Anulowana','Anulowana'),
+        ('Zaakceptowana','Zaakceptowana'),
+        ('OczekujeNaAkceptacje','Oczekuje na akceptacje')
+    ]
+
 class Doctor(models.Model):
     firstname = models.CharField(max_length=50, null=True, blank=True, verbose_name='Imie')
     lastname = models.CharField(max_length=50, null=True, blank=True, verbose_name='Nazwisko')
@@ -40,11 +46,6 @@ class Opinion(models.Model):
 class Appointment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, verbose_name='Wizyta u lekarza:')
-    STATUS_OF_VISIT = [
-        ('Anulowana','Anulowana'),
-        ('Zaakceptowana','Zaakceptowana'),
-        ('OczekujeNaAkceptacje','Oczekuje na akceptacje')
-    ]
     status_of_visit = models.CharField(max_length=20, null=True, blank=True, choices=STATUS_OF_VISIT)
     date_of_visit = models.DateTimeField(null=False, verbose_name='Termin wizyty')
     extra_info = models.TextField(max_length=200, null=True, blank=True, verbose_name='Dodatkowe informacje')

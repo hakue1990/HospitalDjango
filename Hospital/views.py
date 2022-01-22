@@ -3,7 +3,7 @@ from multiprocessing import context
 from random import sample
 from django.shortcuts import render, redirect
 
-from .models import Appointment, Doctor, Opinion
+from .models import Appointment, Doctor, Opinion, STATUS_OF_VISIT
 from .forms import AppointmentForm, DoctorForm, OpinionForm
 
 
@@ -19,7 +19,7 @@ def home(request):
         return render(request, 'home.html', {'doctors':doctors_3})
     else:
         return render(request, 'home_unauthenticated.html', {'doctors':doctors_3})
-        
+
 
 def opinions(request):
     return render(request, 'opinions.html')
@@ -30,9 +30,9 @@ def visits(request):
 def contact(request):
     return render(request, 'contact.html')
 
-def appointment(request):
+def appointment2(request):
     if request.user.is_authenticated:
-        appointments = Appointment.objects.all()
+        appointments = Appointment.objects.filter(created_by=request.user)
         return render(request, 'myappointment.html', {'appointments':appointments})
     else:
         return redirect('/home')
@@ -71,7 +71,26 @@ def addAppointment(request):
         if form.is_valid() and request.user.is_authenticated:
             obje = form.save(commit=False)
             obje.created_by = request.user
-            obje.status = 'OczekujeNaAkceptacje'
+            #obje.status = STATUS_OF_VISIT[0]
+            #obje.status_of_visit = STATUS_OF_VISIT['Anulowana']
+            obje.status_of_visit = 'Oczekuje na akceptacje'
             form.save()
     context = {'form':form}
     return render(request, 'addAppointment.html', context)
+
+def cancelAppointment(request, id):
+    if request.user.is_authenticated:
+        try:
+            appointment = Appointment.objects.get(id=id)
+        except Appointment.DoesNotExist:
+            return render(request, appointment2)
+        if(appointment.created_by == request.user):
+            appointment.status_of_visit = 'Anulowana'
+            appointment.save()
+            appointments = Appointment.objects.filter(created_by=request.user)
+            return render(request, 'myappointment.html', {'appointments':appointments})
+        else:
+            appointments = Appointment.objects.filter(created_by=request.user)
+            return render(request, 'myappointment.html', {'appointments':appointments})
+    else:
+        return render(request, 'home.html')
