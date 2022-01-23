@@ -29,8 +29,8 @@ class Doctor(models.Model):
         ('Alergolog','Alergolog'),
         ('Onkolog','Onkolog')
     ]
-    typeofdoctor = models.CharField(max_length=50, null=True, blank=True, choices=TYPE_OF_DOCTOR, verbose_name='Specjalizacja')
-    image = models.ImageField(null=True, blank=True, upload_to='imgs/')
+    typeofdoctor = models.CharField(max_length=50, null=True, blank=True, choices=TYPE_OF_DOCTOR, verbose_name='Specjalizacja') #korzysta ze słownika TYPE_OF_DOCTOR
+    image = models.ImageField(null=True, blank=True, upload_to='static/') #domyślna lokalizacja zdjęć
     
     def __str__(self):
         return self.firstname +' '+ self.lastname + ' (' + self.typeofdoctor + ')'

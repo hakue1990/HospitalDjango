@@ -26,7 +26,7 @@
         {%for doctor in doctors%}
         <div class="hero--select--card">
           <div class="hero--select-img doc">
-            <img src="{%static '/img/doc 1.jpg'%}" alt="doctor 1" />
+            <img src="{{doctor.image.url}}" alt="doctor 1" />
           </div>
           <div class="hero--select-text">
             <h3>
