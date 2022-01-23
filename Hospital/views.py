@@ -9,13 +9,13 @@ from .forms import AppointmentForm, DoctorForm, OpinionForm
 
 
 def home(request):
-    doctors =list(Doctor.objects.all())
+    doctors =list(Doctor.objects.all())#pobieranie wszystkich lekarzy
     numberOfDoctors = len(doctors)
     if numberOfDoctors >= 3:
-        doctors_3 = sample(doctors,3)
+        doctors_3 = sample(doctors,3)# pobieranie 3 losowych lekarzy do wyświetlenia
     else:
         doctors_3 = sample(doctors, numberOfDoctors)
-    if request.user.is_authenticated:
+    if request.user.is_authenticated: # sprawdzenie czy użytkownik jest zalogowany i zwraca odpowiedni widok
         return render(request, 'home.html', {'doctors':doctors_3})
     else:
         return render(request, 'home_unauthenticated.html', {'doctors':doctors_3})
@@ -24,15 +24,13 @@ def home(request):
 def opinions(request):
     return render(request, 'opinions.html')
 
-def visits(request):
-    return render(request, 'visits.html')
 
 def contact(request):
     return render(request, 'contact.html')
 
 def appointment2(request):
     if request.user.is_authenticated:
-        appointments = Appointment.objects.filter(created_by=request.user)
+        appointments = Appointment.objects.filter(created_by=request.user)#filtrowanie danych z bazy według użytkownika który wysłał zapytanie
         return render(request, 'myappointment.html', {'appointments':appointments})
     else:
         return redirect('/home')
@@ -69,7 +67,7 @@ def addAppointment(request):
         print(request.POST)
         form = AppointmentForm(request.POST, request.FILES)
         if form.is_valid() and request.user.is_authenticated:
-            obje = form.save(commit=False)
+            obje = form.save(commit=False) #pobranie obiektu z formularza i przypisanie mu odpowiednich danych
             obje.created_by = request.user
             #obje.status = STATUS_OF_VISIT[0]
             #obje.status_of_visit = STATUS_OF_VISIT['Anulowana']
@@ -81,7 +79,7 @@ def addAppointment(request):
 def cancelAppointment(request, id):
     if request.user.is_authenticated:
         try:
-            appointment = Appointment.objects.get(id=id)
+            appointment = Appointment.objects.get(id=id)#zwrócenie wizyt wizyt danego użytkownika
         except Appointment.DoesNotExist:
             return render(request, appointment2)
         if(appointment.created_by == request.user):
