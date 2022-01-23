@@ -6,7 +6,6 @@ from register import views as regViews
 urlpatterns = [
     path('home/', views.home, name='home'),
     path('opinions/', views.addOpinionForm, name='opinions'),
-    path('visits/', views.visits, name='visits'),
     path('contact/', views.contact, name='contact'),
     path('myappointment/', views.appointment2),
     path('addDoctor/', views.addDoctorForm),
