@@ -22,7 +22,12 @@ def home(request):
 
 
 def opinions(request):
-    return render(request, 'opinions.html')
+    opinions = Opinion.objects.all()
+    context = {'opinions': opinions}
+    if request.user.is_authenticated:
+        return render(request, 'opinions.html', context)
+    else:
+        return render(request, 'opinions_unauthenticated.html', context)
 
 
 def contact(request):
@@ -50,16 +55,21 @@ def addDoctorForm(request):
 
 def addOpinionForm(request):
     form = OpinionForm()
-    opinions = Opinion.objects.all()
-    if request.method == 'POST':
-        print(request.POST)
-        form = OpinionForm(request.POST)
-        if form.is_valid() and request.user.is_authenticated:
-            obje = form.save(commit=False)
-            obje.created_by = request.user
-            form.save()
-    context = {'form':form, 'opinions': opinions}
-    return render(request, 'opinions.html', context)
+    if request.user.is_authenticated:
+        opinions = Opinion.objects.all()
+        if request.method == 'POST':
+            print(request.POST)
+            form = OpinionForm(request.POST)
+            if form.is_valid() and request.user.is_authenticated:
+                obje = form.save(commit=False)
+                obje.created_by = request.user
+                form.save()
+        context = {'form':form, 'opinions': opinions}
+        return render(request, 'opinions.html', context)
+    else:
+        opinions = Opinion.objects.all()
+        context = {'opinions': opinions}
+        return render(request, 'opinions_unauthenticated.html', context)
 
 def addAppointment(request):
     form = AppointmentForm()
